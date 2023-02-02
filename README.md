@@ -4,7 +4,7 @@
 
 ## 预览
 
-    ![](https://cdn.wgbor.cn/uploads/2023/02/02/167532925963db7eebdb8c9.png)
+![](https://cdn.wgbor.cn/uploads/2023/02/02/167532925963db7eebdb8c9.png)
 
 ## 安装教程
 
