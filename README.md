@@ -29,7 +29,12 @@ location / {
 }
 ```
 
-- APP 监控软件为根目录得到 StarMQ.apk
+- APP 监控软件为根目录的 StarMQ.apk
+  [点击下载](./StarMQ.apk)
+
+## 项目推荐
+
+[CloudZA API 一款开源的 API 系统](https://github.com/iCloudZA/CloudZA_API)
 
 ## 捐赠
 
