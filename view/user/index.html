@@ -1,0 +1,131 @@
+{extend name="user/header" /}
+{block name="main"}
+
+<div class="content">
+    <div class="row">
+        <div class="col-6 col-xl-3">
+            <a class="block block-rounded block-link-shadow text-end" href="javascript:void(0)">
+                <div class="block-content block-content-full d-sm-flex justify-content-between align-items-center">
+                    <div class="d-none d-sm-block">
+                        <i class="fa fa-shopping-bag fa-2x opacity-25"></i>
+                    </div>
+                    <div>
+                        <div class="fs-3 fw-semibold">{$todayorder}</div>
+                        <div class="fs-sm fw-semibold text-uppercase text-muted">今日订单</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-xl-3">
+            <a class="block block-rounded block-link-shadow text-end" href="javascript:void(0)">
+                <div class="block-content block-content-full d-sm-flex justify-content-between align-items-center">
+                    <div class="d-none d-sm-block">
+                        <i class="fa fa-wallet fa-2x opacity-25"></i>
+                    </div>
+                    <div>
+                        <div class="fs-3 fw-semibold">￥{$todaymoney}</div>
+                        <div class="fs-sm fw-semibold text-uppercase text-muted">今日收入</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-xl-3">
+            <a class="block block-rounded block-link-shadow text-end" href="javascript:void(0)">
+                <div class="block-content block-content-full d-sm-flex justify-content-between align-items-center">
+                    <div class="d-none d-sm-block">
+                        <i class="fa fa-bar-chart fa-2x opacity-25"></i>
+                    </div>
+                    <div>
+                        <div class="fs-3 fw-semibold">{$countorder}</div>
+                        <div class="fs-sm fw-semibold text-uppercase text-muted">总订单</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-xl-3">
+            <a class="block block-rounded block-link-shadow text-end" href="javascript:void(0)">
+                <div class="block-content block-content-full d-sm-flex justify-content-between align-items-center">
+                    <div class="d-none d-sm-block">
+                        <i class="fa fa-rmb fa-2x opacity-25"></i>
+                    </div>
+                    <div>
+                        <div class="fs-3 fw-semibold">￥{$countmoney}</div>
+                        <div class="fs-sm fw-semibold text-uppercase text-muted">总收入</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="block block-rounded animated fadeIn">
+        <div class="block-header block-header-default">
+            <h3 class="block-title">
+                <i class="fa fa-link me-1 text-muted"></i>API信息
+            </h3>
+        </div>
+        <div class="block-content">
+            <div class="row">
+                <div class="mb-4 col-sm-12">
+                    <label class="form-label">接口地址</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-alt fs-sm " value="{$info['服务域名']}/"
+                            readonly="">
+                        <a class="btn btn-sm btn-alt-info copy-btn copy" style="padding-top: 6px;" href="javascript:;"
+                            data-clipboard-text="{$info['服务域名']}/" title="点击复制">
+                            <i class="far fa-copy"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mb-4 col-sm-12">
+                    <label class="form-label">商户ID</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-alt fs-sm" value="1000" readonly="">
+                        <a class="btn btn-sm btn-alt-info copy-btn copy" style="padding-top: 6px;" href="javascript:;"
+                            data-clipboard-text="1000" title="点击复制">
+                            <i class="far fa-copy"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mb-4 col-sm-12">
+                    <label class="form-label">商户密钥</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-alt fs-sm" value="{$set.key}" readonly="">
+                        <a class="btn btn-sm btn-alt-info" style="padding-top: 6px;" href="javascript:;"
+                            onclick="rekey()">
+                            重置密钥
+                        </a>
+                        <a class="btn btn-sm btn-alt-info copy-btn copy" style="padding-top: 6px;" href="javascript:;"
+                            data-clipboard-text="{$set.key}" title="点击复制">
+                            <i class="far fa-copy"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block block-rounded">
+        <div class="block-header block-header-default">
+            <h3 class="block-title">
+                <i class="fa fa-server me-1 text-muted"></i>服务器信息
+            </h3>
+        </div>
+        <div class="block-content">
+            <table class="table table-hover table-vcenter">
+                <tbody>
+                    {volist name="info" id="v"}
+                    <tr>
+                        <td class="text-center">{$key}</td>
+                        <td class="d-none d-sm-table-cell">
+                            <span class="badge bg-info">{$v}</span>
+                        </td>
+                    </tr>
+                    {/volist}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{/block}

@@ -1,0 +1,45 @@
+{extend name="user/header" /}
+{block name="main"}
+
+<div class="content">
+
+    <div class="col-12 animated fadeIn">
+        <div class="block block-rounded">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">
+                    <i class="fa fa-qrcode me-1 text-muted"></i>收款码设置
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="animated fadeIn">
+
+        <div class="block block-rounded">
+            <div class="block-content">
+                <div class="row items-push">
+                    <div class="col-12 ">
+                        <div class="mb-4">
+                            <label class="form-label" for="wxpay">微信收款码</label>
+                            <input class="form-control form-control-lg" id="wxpay" name="wxpay"
+                                   placeholder="请输入微信收款码解码后的地址" type="text" value="{$set.wxpay}">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label" for="alipay">支付宝收款码</label>
+                            <input class="form-control form-control-lg" id="alipay" name="alipay"
+                                   placeholder="请输入支付宝收款码解码后的地址" type="text" value="{$set.zfbpay}">
+                        </div>
+                        <div class="mb-4">
+                            <button class="btn btn-alt-primary" id="sub" onclick="setpay()" type="submit">
+                                提交
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{/block}

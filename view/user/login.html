@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StarMQ</title>
+  <!-- css -->
+  <link rel="stylesheet" id="css-main" href="/assets/css/codebase.min-5.4.css">
+</head>
+
+<body>
+<div id="page-container" class="main-content-boxed">
+  <main id="main-container">
+    <div class="bg-image" style="background-image: url('/assets/images/photo34@2x.jpg');">
+      <div class="row mx-0 bg-black-50">
+        <div class="hero-static col-md-6 col-xl-8 d-none d-md-flex align-items-md-end">
+          <div class="p-4">
+            <p class="fs-3 fw-semibold text-white">
+              获得灵感并创造.
+            </p>
+            <p class="text-white-75 fw-medium">
+              Copyright © <span class="js-year-copy-enabled">{:date("Y")}</span>
+            </p>
+          </div>
+        </div>
+        <div class="hero-static col-md-6 col-xl-4 d-flex align-items-center bg-body-extra-light">
+          <div class="content content-full">
+            <div class="px-4 py-2 mb-4">
+              <a class="link-fx fw-bold" href="/">
+                <i class="fa fa-fire"></i>
+                <span class="fs-4 text-body-color">StarMQ</span><span class="fs-4">Pay</span>
+              </a>
+              <h1 class="h3 fw-bold mt-4 mb-2">欢迎使用StarMQ</h1>
+              <h2 class="h5 fw-medium text-muted mb-0">请登录...</h2>
+            </div>
+            <form class="js-validation-signin px-4">
+              <div class="form-floating mb-4">
+                <input type="text" class="form-control" id="username" name="username"
+                       autocomplete="off" placeholder="Enter your username">
+                <label class="form-label" for="username">用户名</label>
+              </div>
+              <div class="form-floating mb-4">
+                <input type="password" class="form-control" id="password" autocomplete="off"
+                       name="password" placeholder="Enter your password">
+                <label class="form-label" for="password">密码</label>
+              </div>
+              <div class="mb-4">
+                <button type="button" class="btn btn-lg btn-alt-primary fw-semibold" id="login">
+                  登入
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<!-- js -->
+<script src="/assets/js/codebase.app.min-5.4.js"></script>
+<script src="/assets/js/lib/jquery.min.js"></script>
+<script src="/assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="/assets/js/bootstrap-notify.min.js"></script>
+<script src="/assets/js/pages/op_auth_signin.min.js"></script>
+<script src="/assets/js/index.js"></script>
+<script>
+  $("#login").click(() => {
+    $("#login").html('<i class="fa fa-spinner fa-spin"></i>正在登入');
+    $("#login").attr('disabled', true);
+    let submit_data = {};
+    submit_data.username = $("#username").val();
+    submit_data.password = $("#password").val();
+    if (submit_data.username == "") {
+      setTimeout(() => {
+        $("#login").html('登入');
+        $("#login").attr('disabled', false);
+      }, 200);
+      notify("请输入账号...", "warning");
+      return false;
+    }
+    if (submit_data.password == "") {
+      setTimeout(() => {
+        $("#login").html('登入');
+        $("#login").attr('disabled', false);
+      }, 200);
+      notify("请输入密码...", "warning");
+      return false;
+    }
+    $.ajax({
+      type: "POST",
+      cache: false,
+      data: submit_data,
+      dataType: "json",
+      success: (res) => {
+        $("#login").html('登入');
+        $("#login").attr('disabled', false);
+        if (res.code == 200) {
+          setTimeout(() => {
+            window.location.href = "/User/index";
+          }, 2000);
+          notify(res.msg, "success");
+        } else {
+          notify(res.msg, "danger");
+        }
+      },
+      error: (XMLHttpRequest, textStatus, errorThrown) => {
+        $("#login").html('登入');
+        $("#login").attr('disabled', false);
+        notify(errorThrown, "danger");
+      }
+    });
+    return false;
+  });
+</script>
+
+</body>
+
+</html>

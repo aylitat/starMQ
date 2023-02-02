@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" id="css-main" href="/assets/css/codebase.min-5.4.css">
+    <title>在线支付 - 安全快速</title>
+</head>
+<body>
+
+<main id="main-container">
+    <div class="content">
+
+
+        <div class="animated">
+            <div class="col-12">
+                <div class="block block-rounded">
+                    <div class="block-header block-header-rtl">
+                        <h3 class="block-title text-center">
+                            <svg t="1610806307396" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" p-id="6171" width="26" height="26">
+                                <path d="M1024 199.18v410.38c0 110-89.54 199.18-200 199.18H200c-110.46 0-200-89.18-200-199.18V199.18C0 89.17 89.54 0 200 0h624c110.46 0 200 89.17 200 199.18z m-553.95 317v46.72q0.9 19.32 12 28.75t30.9 9.43q40.14 0 41.95-38.18v-47.58l86.6 0.45q11.73-0.9 18.49-8.76t7.67-19.54a33.48 33.48 0 0 0-7.67-19.32q-6.77-8.09-18.49-9h-86.6v-27.4l86.15-0.45q11.73-0.9 18.72-9a33.26 33.26 0 0 0 7.89-19.76q-0.9-11.23-7.67-18.42t-18.49-8.09h-66.3l69.91-113.2q9-11.68 9-24.71a50.37 50.37 0 0 0-4.28-15.27 24.48 24.48 0 0 0-7.22-9 27.29 27.29 0 0 0-9.92-4.49 74.75 74.75 0 0 0-12.4-1.8 43.43 43.43 0 0 0-19.4 7.19 54.51 54.51 0 0 0-14 13.48l-75.34 125.83L443 229.18A65.48 65.48 0 0 0 429 215a36.39 36.39 0 0 0-19.4-7.41q-18.49 2.25-25.26 10.11t-9 20.44a36.94 36.94 0 0 0 3.61 18.19 67.53 67.53 0 0 0 8.57 13.7l60.44 106H383q-12.18 0.9-18.72 8.09t-7.89 18.42q1.35 11.68 7.89 19.32t18.72 8.56l87.05 0.45v28.3H383q-12.18 0.9-18.72 8.09t-7.89 18.42a43.81 43.81 0 0 0 7.89 20.44q6.54 9.21 18.72 10.11h87.05z"
+                                      fill="#4375ff" p-id="6172"></path>
+                                <path d="M264.96 903.6m60.2 0l373.67 0q60.2 0 60.2 60.2l0 0q0 60.2-60.2 60.2l-373.67 0q-60.2 0-60.2-60.2l0 0q0-60.2 60.2-60.2Z"
+                                      fill="#4375ff" p-id="6173"></path>
+                            </svg>
+                            {if $type == "alipay"}
+                            <img src="/assets/images/alipay.jpg" alt="" style="height:30px;">
+                            {else if $type == "wxpay}
+                            <img src="/assets/images/wxpay.jpg" alt="" style="height:30px;">
+                            {/if}
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-xl-12">
+                <a class="block block-rounded block-link-shadow" href="javascript:void(0)">
+                    <div class="block-content block-content-full text-center">
+                        <center>
+                            <span class="pb-2 badge bg-default-light">
+                                商户订单号：{$order}
+                            </span>
+                        </center>
+                        <div class="text-center m-3">
+                            <span style="color: #386cfa; font-size: 20px;font-weight: bold">{$money} 元</span>
+                        </div>
+                        <div class="p-1 m-3">
+                            {if $time == 0}
+                            <div id="qrcode">
+                                <img src="/qrcode.php?text={$payurl}">
+                            </div>
+                            {else}
+                            <img src="/assets/images/qrcode_timeout.png">
+                            {/if}
+                        </div>
+                        <p class="fs-lg fw-semibold mb-0"><font style="vertical-align: inherit; color: red"><font
+                                style="vertical-align: inherit;">
+                            请付款{$money}元，注意不能多付或少付!
+                        </font></font></p>
+                        <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                            {if $type == "alipay"}
+                            请使用支付宝扫一扫
+                            {else if $type == "wxpay}
+                            请使用微信扫一扫
+                            {/if}
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!--jquery-->
+<script src="/assets/js/lib/jquery.min.js"></script>
+<!--核心js-->
+<script src="/assets/js/codebase.app.min-5.4.js"></script>
+<script src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.js"></script>
+<!--layer-->
+<script src="/assets/js/layer.js"></script>
+<!--通知-->
+<script src="/assets/js/bootstrap-notify.min.js"></script>
+<!--<script src="/assets/js/index.js"></script>-->
+
+<script>
+    queryState();
+
+    function queryState() {
+        var _v = new Date().getTime();
+        $.ajax({
+            url: "/Pay/console",
+            cache: false,
+            data: {
+                orderId: "{$order}"
+            },
+            type: "POST",
+            dataType: "json",
+            success: (result) => {
+                console.log(result);
+                //成功
+                if (result.code == 200) {
+                    $("#qrcode").html('<img src="/assets/images/pay_ok.png">');//支付成功
+                    //回调页面
+                    window.clearInterval(orderlst);
+                    layer.msg('支付成功，正在跳转中...');
+                    setTimeout(() => {
+                        window.location.href = result.url;
+                    }, 500);
+                }
+                //订单已经超时
+                if (result.code == '-1') {
+                    $("#qrcode").html('<img src="/assets/images/qrcode_timeout.png">');
+                    window.clearInterval(orderlst);
+
+                }
+            }
+        });
+    }
+
+    //周期监听
+    orderlst = window.setInterval(() => {
+        queryState();
+    }, 2000);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+{extend name="user/header" /}
+{block name="main"}
+
+
+<div class="content">
+
+    <div class="animated fadeIn">
+        <div class="col-12">
+            <div class="block block-rounded">
+                <div class="block-header block-header-default">
+                    <h3 class="block-title">
+                        <i class="fa fa-bolt me-1 text-muted"></i>监控端
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block block-rounded">
+        <div class="block-content">
+            <table class="table table-hover table-vcenter">
+                <tbody>
+                <tr>
+                    <td class="text-center">监控端状态</td>
+                    <td class="text-center">
+                        {if $set.jkstate == 1}
+                        <span class="badge bg-success">正常</span>
+                        {else}
+                        <span class="badge bg-danger">异常</span>
+                        {/if}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center">心跳时间</td>
+                    <td class="text-center">
+                        {if $set.lastheart == 0}
+                        <span class="badge bg-danger">异常</span>
+                        {else}
+                        <span class="badge bg-success">{$set.lastheart|date='Y-m-d H:i:s'}</span>
+                        {/if}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="block block-rounded animated fadeIn">
+        <div class="block-content">
+            <div class="mb-4 col-sm-12">
+                <label class="form-label">通知地址</label>
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-alt fs-sm"
+                           value="{$Request.domain}|" readonly="">
+                    <a class="btn btn-sm btn-alt-info copy-btn copy" style="padding-top: 6px;" href="javascript:;"
+                       data-clipboard-text="{Request.domain}|" title="点击复制">
+                        <i class="far fa-copy"></i>
+                    </a>
+                </div>
+                <div class="mb-4 col-sm-12">
+                    <label class="form-label">通讯密钥</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-alt fs-sm" value="{$set.key}" readonly="">
+                        <a class="btn btn-sm btn-alt-info copy-btn copy" style="padding-top: 6px;" href="javascript:;"
+                           data-clipboard-text="{$set.key}" title="点击复制">
+                            <i class="far fa-copy"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6 col-xl-4">
+            <a class="block block-rounded block-link-shadow" href="javascript:void(0)">
+                <div class="block-content block-content-full text-center">
+                    <div class="p-1 mb-3">
+                        <img src="/qrcode.php?text={$Request.domain}|{$set.key}">
+                    </div>
+                    <p class="fs-lg fw-semibold mb-0"><font style="vertical-align: inherit;"><font
+                            style="vertical-align: inherit;">
+                        配置二维码
+                    </font></font></p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+</div>
+
+
+{/block}

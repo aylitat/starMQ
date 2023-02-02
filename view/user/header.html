@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--核心CSS-->
+    <link rel="stylesheet" id="css-main" href="/assets/css/codebase.min-5.4.css">
+    <!--表格样式-->
+    <link rel="stylesheet" href="/assets/css/dataTables.bootstrap5.min.css">
+    <link href="/assets/css/nprogress.css" rel="stylesheet">
+    <!--上传图片-->
+    <link rel="stylesheet" href="/assets/js/plugins/dropzone/min/dropzone.min.css">
+
+    <title>StarMQ</title>
+    <style>
+        td {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page-container"
+        class="sidebar-o enable-page-overlay side-scroll page-header-modern main-content-boxed side-trans-enabled">
+        <div id="page-overlay"></div>
+        <nav id="sidebar">
+            <div class="sidebar-content">
+                <div class="content-header justify-content-lg-center">
+                    <div>
+                        <span class="smini-visible fw-bold tracking-wide fs-lg">
+                            c<span class="text-primary">b</span>
+                        </span>
+                        <a class="link-fx fw-bold tracking-wide mx-auto" href="/">
+                            <span class="smini-hidden">
+                                <i class="fa fa-fire text-primary"></i>
+                                <span class="fs-4 text-dual">StarMQ</span><span class="fs-4 text-primary">Pay</span>
+                            </span>
+                        </a>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-sm btn-alt-danger d-lg-none" data-toggle="layout"
+                            data-action="sidebar_close">
+                            <i class="fa fa-fw fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="js-sidebar-scroll" data-simplebar="init">
+                    <div class="simplebar-wrapper" style="margin: 0px;">
+                        <div class="simplebar-height-auto-observer-wrapper">
+                            <div class="simplebar-height-auto-observer"></div>
+                        </div>
+                        <div class="simplebar-mask">
+                            <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                <div class="simplebar-content-wrapper" tabindex="0" role="region"
+                                    aria-label="scrollable content" style="height: 100%; overflow: hidden;">
+                                    <div class="simplebar-content" style="padding: 0px;">
+                                        <div class="content-side content-side-user px-0 py-0">
+                                            <div class="smini-hidden text-center mx-auto">
+                                                <!-- 头像 -->
+                                                <a class="img-link" href="/User/index">
+                                                    <img class="img-avatar"
+                                                        src="http://q1.qlogo.cn/g?b=qq&nk=1361582519&s=100" alt="">
+                                                </a>
+                                                <ul class="list-inline mt-3 mb-0">
+                                                    <li class="list-inline-item">
+                                                        <a class="link-fx text-dual fs-sm fw-semibold text-uppercase"
+                                                            href="/User/index">{$user}</a>
+                                                    </li>
+
+                                                    <!-- 退出登录 -->
+                                                    <li class="list-inline-item">
+                                                        <a class="link-fx text-dual" href="javascript:void(0)"
+                                                            onclick="logout()">
+                                                            <i class="fa fa-sign-out-alt"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="content-side content-side-full">
+                                            <ul class="nav-main" id="nav-main">
+
+                                                <li class="nav-main-item">
+                                                    <a class="nav-main-link active" href="/User/index">
+                                                        <i class="nav-main-link-icon fa fa-rocket"></i>
+                                                        <span class="nav-main-link-name">控制台</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-main-item">
+                                                    <a class="nav-main-link" href="/User/set">
+                                                        <i class="nav-main-link-icon fa fa-cog"></i>
+                                                        <span class="nav-main-link-name">系统设置</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-main-item">
+                                                    <a class="nav-main-link" href="/User/jk">
+                                                        <i class="nav-main-link-icon fa fa-bolt"></i>
+                                                        <span class="nav-main-link-name">监控端</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-main-item">
+                                                    <a class="nav-main-link" href="/User/code">
+                                                        <i class="nav-main-link-icon fa fa-qrcode"></i>
+                                                        <span class="nav-main-link-name">收款码设置</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-main-item">
+                                                    <a class="nav-main-link" href="/User/order">
+                                                        <i class="nav-main-link-icon fa fa-list"></i>
+                                                        <span class="nav-main-link-name">订单列表</span>
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="simplebar-placeholder" style="width: auto; height: 912px;"></div>
+                    </div>
+                    <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                        <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
+                    </div>
+                    <div class="simplebar-track simplebar-vertical" style="visibility: hidden;">
+                        <div class="simplebar-scrollbar" style="height: 0px; display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <header id="page-header">
+            <div class="content-header">
+                <div class="space-x-1">
+                    <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="layout"
+                        data-action="sidebar_toggle">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </button>
+                </div>
+                <div class="space-x-1">
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn btn-sm btn-alt-secondary" id="page-header-user-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user d-sm-none"></i>
+                            <span class="d-none d-sm-inline-block fw-semibold">{$user}</span>
+                            <i class="fa fa-angle-down opacity-50 ms-1"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-end p-0"
+                            aria-labelledby="page-header-user-dropdown">
+                            <div class="px-2 py-3 bg-body-light rounded-top">
+                                <h5 class="h6 text-center mb-0">
+                                    {$user}
+                                </h5>
+                            </div>
+                            <div class="p-2">
+                                <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
+                                    href="javascript:;" data-bs-toggle="modal" data-bs-target="#userinfo">
+                                    <span>修改信息</span>
+                                    <i class="fa fa-fw fa-user opacity-25"></i>
+                                </a>
+
+                                <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
+                                    href="javascript:void(0)" onclick="logout()">
+                                    <span>登出</span>
+                                    <i class="fa fa-fw fa-sign-out-alt opacity-25"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <main id="main-container">
+            {block name="main"}{/block}
+
+            <div class="modal fade" id="userinfo" tabindex="-1" aria-labelledby="userinfo" style="display: none;"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-popin" role="document">
+                    <div class="modal-content">
+                        <div class="block block-rounded shadow-none mb-0">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">修改信息</h3>
+                                <div class="block-options">
+                                    <button type="button" class="btn-block-option" data-bs-dismiss="modal"
+                                        aria-label="Close">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="block-content fs-sm">
+                                <div class="form-floating mb-4">
+                                    <input type="text" class="form-control" id="username" name="username"
+                                        autocomplete="off" placeholder="Enter your username" value="{$user}">
+                                    <label class="form-label" for="username">用户名</label>
+                                </div>
+                                <div class="form-floating mb-4">
+                                    <input type="text" class="form-control" id="password" name="password"
+                                        autocomplete="off" placeholder="Enter your password">
+                                    <label class="form-label" for="password">密码</label>
+                                </div>
+
+                                <div class="mb-4">
+                                    <button type="button" class="btn btn-lg btn-alt-primary" id="edit"
+                                        data-bs-dismiss="modal">
+                                        修改
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+    <!--JS-->
+    <!--jquery-->
+    <script src="/assets/js/lib/jquery.min.js"></script>
+
+    <script src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.js"></script>
+
+    <!--核心js-->
+    <script src="/assets/js/codebase.app.min-5.4.js"></script>
+    <!--图表-->
+    <script src="/assets/js/plugins/chart.js/chart.min.js"></script>
+
+
+
+    <script src="/assets/js/pages/be_pages_dashboard.min.js"></script>
+    <!--layer-->
+    <script src="/assets/js/layer.js"></script>
+    <!--上传文件-->
+    <script src="/assets/js/plugins/dropzone/min/dropzone.min.js"></script>
+    <!--复制-->
+    <script src="https://cdn.staticfile.org/clipboard.js/2.0.11/clipboard.min.js"></script>
+    <!--通知-->
+    <script src="/assets/js/bootstrap-notify.min.js"></script>
+    <!--日期-->
+    <script src="/assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="/assets/js/index.js"></script>
+
+    <script>
+
+        $('#edit').click(() => {
+            let userinfo = {};
+            $("#edit").html('<i class="fa fa-spinner fa-spin"></i>正在修改');
+            $("#edit").attr('disabled', true);
+            userinfo.user = $("#username").val();
+            userinfo.pass = $("#password").val();
+            if (userinfo.pass != '' && userinfo.user != '') {
+                $.ajax({
+                    url: "/User/update",
+                    data: userinfo,
+                    type: "POST",
+                    dataType: "json",
+                    success: res => {
+                        if (res.code == 200) {
+                            $("#edit").html('<i class="fa fa-spinner fa-spin"></i>修改');
+                            $("#edit").attr('disabled', false);
+                            setTimeout(() => {
+                                location.reload();
+                            }, 2000);
+                            notify(res.msg, "success");
+                        } else {
+                            $("#edit").html('<i class="fa fa-spinner fa-spin"></i>修改');
+                            $("#edit").attr('disabled', false);
+                            notify(res.msg, "danger");
+                        }
+                    }
+                });
+            }
+        });
+
+
+        function logout() {
+            layer.confirm('你确定退出登录吗?', {
+                btn: ['确定', '取消'],
+                closeBtn: 0,
+            }, () => {
+                $.ajax({
+                    url: "/User/logout",
+                    cache: false,
+                    type: "POST",
+                    dataType: "json",
+                    success: (res) => {
+                        if (res.code == 200) {
+                            setTimeout(() => {
+                                location.reload();
+                            }, 2000);
+                            notify(res.msg, "success");
+                            layer.closeAll();
+                        } else {
+                            notify(res.msg, "danger");
+                            layer.closeAll();
+                        }
+                    },
+                    error: (XMLHttpRequest, textStatus, errorThrown) => {
+                        notify(errorThrown, "danger");
+                    }
+                });
+                return false;
+            });
+        };
+    </script>
+
+
+</body>
+
+</html>

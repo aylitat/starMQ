@@ -1,0 +1,60 @@
+{extend name="user/header" /}
+{block name="main"}
+
+
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="col-12">
+            <div class="block block-rounded">
+                <div class="block-header block-header-default">
+                    <h3 class="block-title">
+                        <i class="fa fa-gear me-1 text-muted"></i>系统设置
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="block block-rounded">
+            <div class="block-content">
+                <div class="row items-push">
+                    <div class="col-12 ">
+                        <div class="mb-4">
+                            <label class="form-label" for="close">订单有效期</label>
+                            <input class="form-control form-control-lg" id="close" name="close"
+                                   placeholder="请输入创建的订单几分钟后失效" type="number" value="{$set.close}">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label" for="notifyUrl">异步回调地址</label>
+                            <input class="form-control form-control-lg" id="notifyUrl" name="notifyUrl"
+                                   placeholder="请输入异步回调地址" type="text" value="{$set.notifyUrl}">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label" for="returnUrl">同步回调地址</label>
+                            <input class="form-control form-control-lg" id="returnUrl" name="returnUrl"
+                                   placeholder="请输入同步回调地址" type="text" value="{$set.returnUrl}">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label" for="payQf">区分方式</label>
+                            <select class="form-control form-control-lg" id="payQf">
+                                {if $set.payQf == 1}
+                                <option value="1" selected>金额递增</option>
+                                <option value="2">金额递减</option>
+                                {else if $set.payQf == 2}
+                                <option value="1">金额递增</option>
+                                <option value="2" selected>金额递减</option>
+                                {/if}
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <button class="btn btn-alt-primary" id="sub" onclick="Sysset()" type="submit">
+                                提交
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{/block}
