@@ -30,8 +30,8 @@ location / {
 ## 捐赠
 
 <center>
-<img src="https://cdn.wgbor.cn/uploads/2023/02/02/167532711063db7686a4ac7.jpg" width="40%">
-<img src="https://cdn.wgbor.cn/uploads/2023/02/02/167532713363db769d3831c.jpg" width="40%">
+<img src="https://cdn.wgbor.cn/uploads/2023/02/02/167532711063db7686a4ac7.jpg" width="30%">
+<img src="https://cdn.wgbor.cn/uploads/2023/02/02/167532713363db769d3831c.jpg" width="30%">
 </center>
 
 ## 问题反馈
