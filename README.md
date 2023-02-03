@@ -48,12 +48,14 @@ location / {
 
 ## 捐赠
 
-<center>
-<img src="./wx.jpg" width="40%">
-<img src="./ali.jpg" width="40%">
+- 如果你觉得程序好用的话，不妨通过捐赠的方式支持我们持续更新~
+<center style="display:flex;">
+<img src="./wx.jpg" width="50%">
+<img src="./ali.jpg" width="50%">
 </center>
 
 ## 问题反馈
 
 - 邮箱： `i@kain8.cn`
+- QQ群：`758107405`
 - QQ：`1361582519`
